@@ -10,7 +10,18 @@ void main() {
 
   test("Middle rank generation", () {
     final generator = RanksGenerator(alphabet: "abcde");
+    final nextGenerator = RanksGenerator(alphabet: "0123456789abcdefghijklmnopqrstuvwxyz");
 
+    expect(nextGenerator.generateBetween("h08", "h0h"), "h0c");
+    expect(nextGenerator.generateBetween("h", "h0h"), "h08");
+    expect(nextGenerator.generateBetween("h", "h1"), "h0h");
+    expect(nextGenerator.generateBetween("h", "i"), "hh");
+    expect(nextGenerator.generateBetween("h", "hh"), "h8");
+    expect(nextGenerator.generateBetween("h", "h8"), "h3");
+    expect(nextGenerator.generateBetween("h", "h3"), "h1");
+
+    expect(generator.generateBetween("a", "ad"), "ab");
+    expect(generator.generateBetween("aa", "ad"), "ab");
     expect(generator.generateBetween("a", "d"), "b");
     expect(generator.generateBetween("a", "b"), "ac");
     expect(generator.generateBetween("ac", "b"), "ad");

@@ -14,6 +14,8 @@ class RanksGenerator {
 
   /// Генерирует ранг между двумя элементами
   String generateBetween(String previousElementRank, String nextElementRank) {
+    String resultRank;
+
     final maxRankLength = math.max(previousElementRank.length, nextElementRank.length);
     final paddedPreviousElementRank = previousElementRank.padRight(maxRankLength, alphabet[0]);
     final paddedNextElementRank = nextElementRank.padRight(maxRankLength, alphabet[0]);
@@ -24,13 +26,19 @@ class RanksGenerator {
     if (elementsBetweenRanks < 0) {
       throw ArgumentError("Previous rank cannot be smaller than next rank");
     } else if (elementsBetweenRanks == 0) {
-      return previousElementRank + getInitialRank();
+      resultRank = previousElementRank + getInitialRank();
+    } else {
+      final middleElementNumber = previousElementNumber + (elementsBetweenRanks == 1 ? 1 : (elementsBetweenRanks ~/ 2));
+      final middleElementRank = NotationHelper.convertNumberToString(alphabet, middleElementNumber);
+
+      resultRank = middleElementRank.padLeft(previousElementRank.length, alphabet[0]);
     }
 
-    final middleElementNumber = previousElementNumber + (elementsBetweenRanks == 1 ? 1 : (elementsBetweenRanks ~/ 2));
-    final middleElementRank = NotationHelper.convertNumberToString(alphabet, middleElementNumber);
+    if (resultRank.compareTo(nextElementRank) == 1) {
+      return generateBetween(paddedPreviousElementRank, nextElementRank);
+    }
 
-    return middleElementRank.padLeft(previousElementRank.length, alphabet[0]);
+    return resultRank;
   }
 
   /// Генерирует ранг для размещения элемента под элементом с указанным рангом
