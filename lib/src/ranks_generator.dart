@@ -49,7 +49,7 @@ class RanksGenerator {
       }
     }
 
-    return previousElementRank + alphabet[0];
+    return previousElementRank + getInitialRank();
   }
 
   /// Генерирует ранг для размещения элемента над элементом с указанным рангом

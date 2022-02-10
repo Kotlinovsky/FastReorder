@@ -52,18 +52,18 @@ void main() {
     expect(generator.generateNext("dd"), "e");
     expect(generator.generateNext("de"), "e");
     expect(generator.generateNext("dee"), "e");
-    expect(generator.generateNext("e"), "ea");
+    expect(generator.generateNext("e"), "ec");
     expect(generator.generateNext("ea"), "eb");
     expect(generator.generateNext("eb"), "ec");
     expect(generator.generateNext("ebc"), "ec");
     expect(generator.generateNext("ec"), "ed");
     expect(generator.generateNext("ed"), "ee");
-    expect(generator.generateNext("ee"), "eea");
+    expect(generator.generateNext("ee"), "eec");
     expect(generator.generateNext("eea"), "eeb");
     expect(generator.generateNext("eeb"), "eec");
     expect(generator.generateNext("eec"), "eed");
     expect(generator.generateNext("eed"), "eee");
-    expect(generator.generateNext("eee"), "eeea");
+    expect(generator.generateNext("eee"), "eeec");
   });
 
   test("Previous rank generation test", () {
